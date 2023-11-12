@@ -15,7 +15,7 @@ mongoose.connect(DB_url,{})
 .then(()=>{console.log('Data Base connected')})
 .catch((err)=>{console.log('DB connection Failled',err)})
 
-//create a mentor
+//API to create a mentor
 
 app.post('/postMentor', async (req,res)=>{
     try {
@@ -27,7 +27,7 @@ app.post('/postMentor', async (req,res)=>{
     }
 })
 
-// create a Student
+// API to create a Student
 
 app.post('/poststudent',async(req,res)=>{
     try {
@@ -40,7 +40,7 @@ app.post('/poststudent',async(req,res)=>{
   
 })
 
-// assign mentor
+// API TO assign student to mentor
 app.post('/mentor/:mentorID/assign', async(req,res)=>{
     try {
     const mentor= await Mentor.findById(req.params.mentorID)
@@ -62,7 +62,8 @@ app.post('/mentor/:mentorID/assign', async(req,res)=>{
     
 })
 
-// update the mentor and student
+// update the mentor and student.select One Student and Assign one Mentor
+
 app.put('/student/:studentID/assignMentor/:mentorID', async(req,res)=>{
     try {
         const mentor = await Mentor.findById(req.params.mentorID)
@@ -79,7 +80,8 @@ app.put('/student/:studentID/assignMentor/:mentorID', async(req,res)=>{
     }
    
 })
-//get the particular mentor
+
+//show all students for a particular mentor
 
 app.get('/mentor/:id/students', async(req,res)=>{
     try {
@@ -89,7 +91,8 @@ app.get('/mentor/:id/students', async(req,res)=>{
         res.status(500).send(error.message)
     } 
 })
-//get previous mentor
+
+//show the previously assigned mentor for a particular student.
 
 app.get('/previousMentor/:id/students', async(req,res)=>{
     try {
