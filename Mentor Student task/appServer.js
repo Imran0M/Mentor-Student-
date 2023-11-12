@@ -27,6 +27,8 @@ app.post('/postMentor', async (req,res)=>{
     }
 })
 
+// create a Student
+
 app.post('/poststudent',async(req,res)=>{
     try {
         const studen = new Student(req.body)
@@ -38,6 +40,7 @@ app.post('/poststudent',async(req,res)=>{
   
 })
 
+// assign mentor
 app.post('/mentor/:mentorID/assign', async(req,res)=>{
     try {
     const mentor= await Mentor.findById(req.params.mentorID)
