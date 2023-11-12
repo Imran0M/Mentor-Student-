@@ -7,7 +7,7 @@ const Student= require('./Models/student')
 require('dotenv').config()
 const app = express();
 app.use(bodyParser.json())
-const PORT= process.env.Port;
+const PORT= process.env.PORT;
 
 // DataBase connection
 const DB_url= process.env.DB_url
